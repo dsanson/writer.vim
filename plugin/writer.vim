@@ -40,6 +40,12 @@ function! w:Toggle()
 		" Apply writer settings
 
 		if has('gui_macvim')
+			" There is a strange interaction between this and
+			" setting linespace below. The result is a window
+			" that is about a line short at the top of the
+			" screen. Setting lines=9999 manually fixes
+			" the problem, but that setting has no effect
+			" from within the plugin.
 			set fuoptions+=maxvert
 			set fuoptions-=maxhorz
 			set fullscreen
@@ -47,6 +53,8 @@ function! w:Toggle()
 
 	    if has('gui')
 			if exists('g:writer_guifont')
+				" set your preferred font by setting
+				" g:writer_guifont in your gvimrc.
 			    exe ":set guifont=" . g:writer_guifont
 		    else
 			    set guifont=Monaco:h15
