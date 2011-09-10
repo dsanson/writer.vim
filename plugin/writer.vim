@@ -13,39 +13,55 @@ let g:writer_on = 0
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:font = &guifont
+let s:originalfont = &guifont
+echoerr s:originalfont
 let s:numbers = &number
 let s:relative = &relativenumber
 let s:spacing = &linespace
 let s:cursor = &cursorline
 let s:width = &textwidth
 let s:status = &laststatus
+let s:display = &display
+let s:joinspaces = &joinspaces
+let s:backspace = &backspace
 
 function s:Toggle()
     if has('gui')
         if (g:writer_on == 0)
-            set guifont=Monaco:h15
+			if !exists('g:writer_guifont')
+            	set guifont=Monaco:h15
+			else
+				exe ":set guifont=" . g:writer_guifont
+			endif
             set nonumber
             set norelativenumber
             set linespace=5
             set nocursorline
             set textwidth=75
             set laststatus=0
+			set display=lastline
+			set nojoinspaces
+			set backspace=indent,eol,start
             let g:writer_on = 1
         else
-            exe ":set guifont=" . s:font
+            exe ":set guifont=" . s:originalfont
             exe ":set linespace=" . s:spacing
             exe ":set textwidth=" . s:width
             exe ":set laststatus=" . s:status
-            if (s:numbers == 0)
+			exe ":set display=" . s:display
+			exe ":set backspace=" . s:backspace
+            if (s:numbers == 1)
                 set number
             endif
-            if (s:relative == 0)
+            if (s:relative == 1)
                 set relativenumber
             endif
-            if (s:cursor == 0)
+            if (s:cursor == 1)
                 set cursorline
             endif
+			if (s:joinspaces == 1)
+				set joinspaces
+			endif
             let g:writer_on = 0
         endif
     else
