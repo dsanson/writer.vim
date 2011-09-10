@@ -19,9 +19,11 @@ function! w:Toggle()
 		if has('gui')
 		    let w:savedfont = &guifont
 		    let w:spacing = &linespace
+			let w:guioptions = &guioptions
 		endif
 		if has('gui_macvim')
 			let w:fullscreen = &fullscreen
+			let w:fuoptions = &fuoptions
 		endif
 		let w:numbers = &number
 		let w:relative = &relativenumber
@@ -36,14 +38,26 @@ function! w:Toggle()
 		let w:columns = &columns
 		let w:lines = &lines
 		" Apply writer settings
-		if has('gui')
+
+		if has('gui_macvim')
+			set fuoptions+=maxvert
+			set fuoptions-=maxhorz
+			set fullscreen
+		endif
+
+	    if has('gui')
 			if exists('g:writer_guifont')
 			    exe ":set guifont=" . g:writer_guifont
 		    else
 			    set guifont=Monaco:h15
 			endif
 		    set linespace=5
+			set guioptions-=T "disable toolbar
+			set guioptions-=r "disable right scrollbar
+			set guioptions-=L "disable left scrollbar
 		endif
+
+
 		set nonumber
 		set norelativenumber
 		set nocursorline
@@ -55,18 +69,19 @@ function! w:Toggle()
 		set backspace=indent,eol,start
 		set columns=80
 		set lines=9999
-	    if has('gui_macvim')
-			set fullscreen
-		endif
-		let w:writer_on = 1
+	   	let w:writer_on = 1
 	else
 		" Apply saved settings
 		if has('gui')
 		    exe ":set guifont=" . w:savedfont
 		    exe ":set linespace=" . w:spacing
+			exe ":set guioptions=" . w:guioptions
 		endif
-		if has('gui_macvim') && (w:fullscreen == 0)
-			set nofullscreen
+		if has('gui_macvim') 
+			if (w:fullscreen == 0)
+			    set nofullscreen
+			endif
+			exe ":set fuoptions=" . w:fuoptions
 		endif
 		exe ":set textwidth=" . w:width
 		exe ":set laststatus=" . w:status
