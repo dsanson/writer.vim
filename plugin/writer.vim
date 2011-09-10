@@ -25,6 +25,8 @@ function! w:Toggle()
 		let w:cursor = &cursorline
 		let w:width = &textwidth
 		let w:status = &laststatus
+		let w:formatoptions = &formatoptions
+		let w:linebreak = &linebreak
 		let w:display = &display
 		let w:backspace = &backspace
 		let w:joinspace = &joinspaces
@@ -40,8 +42,10 @@ function! w:Toggle()
 		set nonumber
 		set norelativenumber
 		set nocursorline
-		set textwidth=75
+		set textwidth=0
 		set laststatus=0
+		set formatoptions=1
+		set linebreak
 		set display=lastline
 		set backspace=indent,eol,start
 		let w:writer_on = 1
@@ -54,6 +58,7 @@ function! w:Toggle()
 		exe ":set textwidth=" . w:width
 		exe ":set laststatus=" . w:status
 		exe ":set display=" . w:display
+		exe ":set formatoptions=" . w:formatoptions
 		exe ":set backspace=" . w:backspace
 		if (w:numbers == 1)
 			set number
@@ -66,6 +71,9 @@ function! w:Toggle()
 		endif
 		if (w:joinspace == 1)
 			set joinspaces
+		endif
+		if (w:linebreak == 0)
+			set nolinebreak
 		endif
 		let w:writer_on = 0
 	endif
