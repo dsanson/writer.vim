@@ -8,7 +8,7 @@ bar.
 
 Inspired by the amazing `IA Writer`_ for Mac/iPad.
 
-.. image:: https://github.com/honza/writer.vim/raw/master/public/screen.jpg
+.. image:: https://github.com/honza/writer.vim/raw/master/public/screen.png
 
 Installation
 ------------
