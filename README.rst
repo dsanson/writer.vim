@@ -10,6 +10,19 @@ Inspired by the amazing `IA Writer`_ for Mac/iPad.
 
 .. image:: https://github.com/dsanson/writer.vim/raw/master/public/screen.png
 
+David's Fork
+------------
+
+This is a fork of writer.vim. I've made some changes to the logic and added 
+more settings to provide what, by my lights, is a pleasant distraction free
+vim writing environment.
+
+I really like the basic concept of this plugin: provide a set of opinionated
+settings, and package them up in a toggle function. So often, these settings
+get spread out into one's .vimrc and .gvimrc files, making it hard to try
+out new settings, and making it hard for new users to get something nice
+without a lot of tweaking.
+
 Installation
 ------------
 
@@ -18,15 +31,17 @@ Installation
 ::
 
     cd ~/.vim/bundle
-    git clone git://github.com/honza/writer.vim
+    git clone git://github.com/dsanson/writer.vim
 
 Usage
 -----
 
 Run ``:WriterToggle`` to toggle the writing settings.
 
-**Note**: the plugin doesn't work in terminal vim. Please use MacVim, gVim and
-the like.
+**Note**: ~~the plugin doesn't work in terminal vim. Please use MacVim, gVim and
+the like.~~ [In this fork, I've tried to separate out the gui-only settings from
+the settings that should work from the console as well. So this should work okay
+in terminal vim -- David]
 
 Contributing and feedback
 -------------------------
