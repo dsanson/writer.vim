@@ -75,7 +75,7 @@ function! w:Toggle()
 		set linebreak
 		set display=lastline
 		set backspace=indent,eol,start
-		set columns=75
+		set columns=80
 		set lines=9999
 	   	let w:writer_on = 1
 	else
