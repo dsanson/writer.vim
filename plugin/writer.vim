@@ -89,12 +89,6 @@ function! w:Toggle()
 		    exe ":set linespace=" . w:spacing
 			exe ":set guioptions=" . w:guioptions
 		endif
-		if has('gui_macvim') 
-			if (w:fullscreen == 0)
-			    set nofullscreen
-			endif
-			exe ":set fuoptions=" . w:fuoptions
-		endif
 		exe ":set textwidth=" . w:width
 		exe ":set laststatus=" . w:status
 		exe ":set display=" . w:display
@@ -116,6 +110,12 @@ function! w:Toggle()
 		endif
 		if (w:linebreak == 0)
 			set nolinebreak
+		endif
+		if has('gui_macvim') 
+			if (w:fullscreen == 0)
+			    set nofullscreen
+			endif
+			exe ":set fuoptions=" . w:fuoptions
 		endif
 		let w:writer_on = 0
 	endif
