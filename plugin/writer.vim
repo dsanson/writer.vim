@@ -26,7 +26,9 @@ function! w:Toggle()
 			let w:fuoptions = &fuoptions
 		endif
 		let w:numbers = &number
-		let w:relative = &relativenumber
+		if version >= 730
+			let w:relative = &relativenumber
+		endif
 		let w:cursor = &cursorline
 		let w:width = &textwidth
 		let w:status = &laststatus
@@ -67,7 +69,9 @@ function! w:Toggle()
 
 
 		set nonumber
-		set norelativenumber
+		if version >= 730
+			set norelativenumber
+		endif
 		set nocursorline
 		set textwidth=0
 		set laststatus=0
@@ -99,8 +103,10 @@ function! w:Toggle()
 		if (w:numbers == 1)
 			set number
 		endif
-		if (w:relative == 1)
-			set relativenumber
+		if version >= 730
+			if (w:relative == 1)
+				set relativenumber
+			endif
 		endif
 		if (w:cursor == 1)
 			set cursorline
