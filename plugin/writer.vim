@@ -81,7 +81,7 @@ function! w:Toggle()
 	else
 		" Apply saved settings
 		if has('gui')
-		    exe ":set guifont=" . w:savedfont
+		    exe ":set guifont=" . escape(w:savedfont, ' ')
 		    exe ":set linespace=" . w:spacing
 			exe ":set guioptions=" . w:guioptions
 		endif
