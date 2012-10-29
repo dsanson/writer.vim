@@ -1,6 +1,7 @@
 " Vim plugin for writing prose
 " Last Change:	2011-08-02
 " Maintainer:	Honza Pokorny <me@honza.ca>
+" This Fork:    David Sanson <dsanson@gmail.com>
 " License:	BSD license
 
 if exists("w:loaded_writer")
@@ -48,6 +49,7 @@ function! w:Toggle()
 			" from within the plugin.
 			set fuoptions+=maxvert
 			set fuoptions-=maxhorz
+            set fuoptions+=background:Normal
 			set fullscreen
 		endif
 
@@ -57,7 +59,7 @@ function! w:Toggle()
 				" g:writer_guifont in your gvimrc.
 			    exe ":set guifont=" . g:writer_guifont
 		    else
-			    set guifont=Monaco:h15
+			    set guifont=Menlo:h15
 			endif
 		    set linespace=5
 			set guioptions-=T "disable toolbar
@@ -96,6 +98,8 @@ function! w:Toggle()
 		exe ":set display=" . w:display
 		exe ":set formatoptions=" . w:formatoptions
 		exe ":set backspace=" . w:backspace
+        exe ":set columns=" . w:columns
+        exe ":set lines=" . w:lines
 		if (w:numbers == 1)
 			set number
 		endif
